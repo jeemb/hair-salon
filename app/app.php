@@ -73,5 +73,10 @@ $app->post("/stylists/{id}/edit", function($id) use ($app) {
     //add and send client info over here
 });
 
+$app->post("/delete_stylists", function() use ($app) {
+        Stylist::deleteAll();
+        return $app['twig']->render('stylists.html.twig', array('stylists' => Stylist::GetAll()));
+});
+
 return $app;
 ?>
