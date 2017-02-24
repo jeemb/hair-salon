@@ -24,6 +24,11 @@ $app->get("/", function() use ($app) {
     return $app['twig']->render('stylists.html.twig', array('stylists' => Stylist::getAll()));
     });
 
+$app->patch("/", function() use ($app) {
+
+    return $app['twig']->render('stylists.html.twig', array('stylists' => Stylist::getAll()));
+    });
+
 $app->post("/stylists_add", function() use ($app) {
     $name = $_POST['name'];
     $phone = $_POST['phone'];
@@ -55,12 +60,18 @@ $app->patch("/stylists/{id}", function($id) use ($app) {
         return $app['twig']->render('stylists_id.html.twig', array('stylist' => $stylist));
     });
 
-    $app->post("/stylists/{id}/edit", function($id) use ($app) {
+$app->delete("/stylists/{id}", function($id) use ($app) {
         $stylist = Stylist::find($id);
-        // $clients = Clients::getAll();
-        return $app['twig']->render('stylists_id_edit.html.twig', array('stylist' => $stylist));
-        //add and send client info over here
+        $stylist->delete();
+        return $app['twig']->render('stylists.html.twig', array('stylists' => Stylist::getAll()));
     });
+
+$app->post("/stylists/{id}/edit", function($id) use ($app) {
+    $stylist = Stylist::find($id);
+    // $clients = Clients::getAll();
+    return $app['twig']->render('stylists_id_edit.html.twig', array('stylist' => $stylist));
+    //add and send client info over here
+});
 
 return $app;
 ?>

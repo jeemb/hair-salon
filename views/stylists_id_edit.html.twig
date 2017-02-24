@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css'>
         <title>Hair Salon</title>
     </head>
     <body>
         <div class="container">
+            <h3>Update Stylist Information</h3>
             <form action="/stylists/{{ stylist.getId }}" method="post">
                 <input name="_method" type="hidden" value="patch">
 
@@ -20,11 +22,11 @@
                 <button type="submit" class='btn btn-primary'>Update</button>
             </form>
 
-            <!-- <form action="/stylists" method="post">
+            <form action="/stylists/ {{ stylist.getId}}" method="post">
                 <input name="_method" type="hidden" value="delete">
 
                 <button type="submit" class='btn btn-primary'>Delete this stylist</button>
-            </form> -->
+            </form>
         </div>
     </body>
 </html>
