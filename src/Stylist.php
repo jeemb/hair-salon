@@ -41,7 +41,7 @@ class Stylist
 
     function setPhone($new_phone)
     {
-        $this->phone = (string) $new_phone;
+        $this->phone = (string)$new_phone;
     }
 
     function setAddress($new_address)
@@ -49,10 +49,31 @@ class Stylist
         $this->address = (string) $new_address;
     }
 
+    function save()
+        {
+            $GLOBALS['DB']->exec("INSERT INTO stylists (name, phone, address) VALUES ('{$this->getName()}', '{$this->getPhone()}', '{$this->getAddress()}')");
+            $this->id = $GLOBALS['DB']->lastInsertId();
+        }
 
+        static function getAll()
+        {
+            $returned_stylists = $GLOBALS['DB']->query("SELECT * FROM stylists;");
+            $stylists = array();
+            foreach($returned_stylists as $stylist) {
+                $name = $stylist['name'];
+                $phone = $stylist['phone'];
+                $address = $stylist['address'];
+                $id = $stylist['id'];
+                $new_stylist = new Stylist($name, $phone, $address, $id);
+                array_push($stylists, $new_stylist);
+            }
+            return $stylists;
+        }
 
-
-
+        static function deleteAll()
+        {
+          $GLOBALS['DB']->exec("DELETE FROM stylists;");
+        }
 
 }
 ?>
