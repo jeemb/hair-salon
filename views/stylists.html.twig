@@ -10,16 +10,17 @@
             {% if stylists is not empty %}
                 <ul>
                     {% for stylist in stylists %}
-                        <li>{{ stylist.getName }}</li>
-                            <!-- <a href="/stylists/{{ stylist.getId }}/">{{ stylist.getName }}</a></li> -->
-                        <li>{{ stylist.getPhone }}</li>
-                        <li>{{ stylist.getAddress }}</li>
+                        <li><a href="/stylists/{{ stylist.getId }}">{{ stylist.getName }}</a></li>
+                            <ul>
+                                <li>{{ stylist.getPhone }}</li>
+                                <li>{{ stylist.getAddress }}</li>
+                            </ul>
                     {% endfor %}
                 </ul>
             {% endif %}
 
             <h3>Want to add a new Stylist? Enter information below:</h3>
-            <form action='/stylist_add' method='post'>
+            <form action='/stylists_add' method='post'>
                 <label for='name'>Name:</label>
                 <input id='name' name='name' type='name'>
 
