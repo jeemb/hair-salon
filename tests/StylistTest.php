@@ -144,6 +144,68 @@
             //Assert
             $this->assertEquals([$test_Stylist2], Stylist::getAll());
         }
+
+        function test_getName()
+        {
+            //Arrange
+            $name = "Bob";
+            $phone = "44";
+            $address = "400";
+            $id = 1;
+            $test_stylist = new Stylist($name, $phone, $address, $id);
+            //Act
+            $result = $test_stylist->getName();
+
+            //Assert
+            $this->assertEquals($name, $result);
+        }
+
+        function test_getPhone()
+        {
+            //Arrange
+            $name = "Bob";
+            $phone = "44";
+            $address = "400";
+            $id = 1;
+            $test_stylist = new Stylist($name, $phone, $address, $id);
+            //Act
+            $result = $test_stylist->getPhone();
+
+            //Assert
+            $this->assertEquals($phone, $result);
+        }
+
+        function test_getAddress()
+        {
+            //Arrange
+            $name = "Bob";
+            $phone = "44";
+            $address = "400";
+            $id = 1;
+            $test_stylist = new Stylist($name, $phone, $address, $id);
+            //Act
+            $result = $test_stylist->getAddress();
+
+            //Assert
+            $this->assertEquals($address, $result);
+        }
+
+        function test_getId()
+        {
+            //Arrange
+            $name = "Bob";
+            $phone = "44";
+            $address = "400";
+            $id = 1;
+            $test_stylist = new Stylist($name, $phone, $address, $id);
+
+            //Act
+            $result = $test_stylist->getId();
+
+            //Assert
+            $this->assertEquals(true, is_numeric($result));
+        }
+
     }
 
 ?>
