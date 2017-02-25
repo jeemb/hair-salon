@@ -43,16 +43,15 @@ $app->post("/stylists_add", function() use ($app) {
 $app->get("/stylists/{id}", function($id) use ($app) {
         $stylist = Stylist::find($id);
         // $clients = Clients::getAll();
-        return $app['twig']->render('stylists_id.html.twig', array('stylist' => $stylist));
+        return $app['twig']->render('stylists_id.html.twig', array('stylist' => $stylist, 'clients' => $clients));
         //add and send client info over here
 });
 
 $app->post("/stylists/{id}", function($id) use ($app) {
         $stylist = Stylist::find($id);
-        // $clients = Clients::getAll();
+        $clients = Clients::getAll();
         return $app['twig']->render('stylists_id.html.twig', array('stylist' => $stylist));
-        //add and send client info over here
-});
+    });
 
 
 $app->patch("/stylists/{id}", function($id) use ($app) {
@@ -80,5 +79,20 @@ $app->post("/delete_stylists", function() use ($app) {
         return $app['twig']->render('stylists.html.twig', array('stylists' => Stylist::GetAll()));
 });
 
+
+$app->get("/client_add", function() use ($app) {
+    return $app['twig']->render('stylists_id.html.twig', array('client' => Client::getAll()));
+});
+
+$app->post("/client_add", function() use ($app) {
+        $name_client = $_POST['new_client'];
+        $stylist_id = $_POST['stylist_id'];
+        $stylist = Stylist::find($stylist_id);
+        $new_client = new Client($name_client, $stylist_id, $id=null);
+        $new_client->save();
+        return $app['twig']->render('stylists_id.html.twig', array('stylist' => $stylist, 'clients' => Client::getAll()));
+
+        // return $app->redirect("/stylists/".$stylist_id."/client_add");
+});
 return $app;
 ?>

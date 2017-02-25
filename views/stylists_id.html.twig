@@ -17,6 +17,28 @@
             <form action="/stylists/{{ stylist.getId }}/edit" method="post">
                 <button type="submit" name="button" class="btn btn-primary">Edit Stylist Info</button>
             </form>
+
+                <h1>Clients that {{stylist.getName}} currently has: </h1>
+                {% if clients is not empty %}
+                <ul>
+                    {% for client in clients %}
+                        {% if stylist.getId == client.getStylistId %}
+                            <li>{{ client.getName }}</li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+                {% endif %}
+
+            <h3>Want to add a new client for {{ stylist.getName }}? Enter client information below:</h3>
+
+            <form action='/client_add' method='post'>
+                <input id="stylist_id" name="stylist_id" type="hidden" value="{{ stylist.getId() }}">
+                <label for='new_client'>Name:</label>
+                <input id='new_client' name='new_client' type='text'>
+
+                <button type='submit' class='btn btn-primary'>Add Client</button>
+            </form>
+
             <a href="/">Homepage</a>
         </div>
     </body>
