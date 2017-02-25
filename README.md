@@ -29,6 +29,18 @@ This database program collects and summarizes stylist and client information for
 * Run `php -S localhost:8000` to setup document root
 * Open up web browser and navigate to **`localhost:8000`** to view program
 
+## Backup MySQL Commands
+
+* Run `/Applications/MAMP/Library/bin/mysql --host=localhost -uroot -proot`
+* `CREATE DATABASE hair_salon;`
+* `USE hair_salon`
+* `CREATE TABLE stylists (id serial PRIMARY KEY, name VARCHAR (255), phone VARCHAR (255), address VARCHAR (255));`
+* `CREATE TABLE clients (id serial PRIMARY KEY, name VARCHAR (255), phone VARCHAR (255), address VARCHAR (255), stylist_id INT);`
+* Run servers on MAMP
+* Open browser and go to: localhost:8888/phpmyadmin
+* Navigate to hair_salon table and click "Operations"
+* Copy database (structure only) and call copy "hair_salon_test"
+
 ## Known Bugs
 
 None known.

@@ -38,48 +38,48 @@ class Client
             $this->id = $GLOBALS['DB']->lastInsertId();
         }
 
-        static function getAll()
-        {
-            $returned_clients = $GLOBALS['DB']->query("SELECT * FROM clients;");
-            $clients = array();
-            foreach($returned_clients as $client) {
-                $name_client = $client['name_client'];
-                $stylist_id = $client['stylist_id'];
-                $id = $client['id'];
-                $new_client = new Client($name_client, $stylist_id, $id);
-                array_push($clients, $new_client);
+    static function getAll()
+    {
+        $returned_clients = $GLOBALS['DB']->query("SELECT * FROM clients;");
+        $clients = array();
+        foreach($returned_clients as $client) {
+            $name_client = $client['name_client'];
+            $stylist_id = $client['stylist_id'];
+            $id = $client['id'];
+            $new_client = new Client($name_client, $stylist_id, $id);
+            array_push($clients, $new_client);
+        }
+        return $clients;
+    }
+
+    static function find($search_id)
+    {
+        $found_client = null;
+        $clients = Client::getAll();
+        foreach($clients as $client) {
+            $client_id = $client->getId();
+            if ($client_id == $search_id) {
+                $found_client = $client;
             }
-            return $clients;
         }
+        return $found_client;
+    }
 
-        static function find($search_id)
-        {
-            $found_client = null;
-            $clients = Client::getAll();
-            foreach($clients as $client) {
-                $client_id = $client->getId();
-                if ($client_id == $search_id) {
-                    $found_client = $client;
-                }
-            }
-            return $found_client;
-        }
+    function update($new_name_client)
+    {
+        $GLOBALS['DB']->exec("UPDATE clients SET name_client = '{$new_name_client}' WHERE id = {$this->getId()};");
+        $this->setName($new_name_client);
+    }
 
-        function update($new_name_client)
-        {
-            $GLOBALS['DB']->exec("UPDATE clients SET name_client = '{$new_name_client}' WHERE id = {$this->getId()};");
-            $this->setName($new_name_client);
-        }
+    function delete()
+    {
+        $GLOBALS['DB']->exec("DELETE FROM clients WHERE id = {$this->getId()};");
+    }
 
-        function delete()
-        {
-            $GLOBALS['DB']->exec("DELETE FROM clients WHERE id = {$this->getId()};");
-        }
-
-        static function deleteAll()
-        {
-          $GLOBALS['DB']->exec("DELETE FROM clients;");
-        }
+    static function deleteAll()
+    {
+      $GLOBALS['DB']->exec("DELETE FROM clients;");
+    }
 
 }
 ?>
