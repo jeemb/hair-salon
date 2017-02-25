@@ -92,12 +92,12 @@ class Stylist
         function delete()
         {
             $GLOBALS['DB']->exec("DELETE FROM stylists WHERE id = {$this->getId()};");
+            $GLOBALS['DB']->exec("DELETE FROM clients WHERE stylist_id = {$this->getId()};");
         }
 
         static function deleteAll()
         {
           $GLOBALS['DB']->exec("DELETE FROM stylists;");
-        //   $GLOBALS['DB']->exec("DELETE FROM clients WHERE stylist_id = {$this->getId()};");
         }
 }
 ?>
