@@ -115,13 +115,13 @@
             $test_stylist = new Stylist($name, $phone, $address, $id);
             $test_stylist->save();
 
-            $new_name = "Robert";
+            $new_name = "Joe";
 
             //Act
             $test_stylist->update($new_name);
 
             //Assert
-            $this->assertEquals("Robert", $test_stylist->getName());
+            $this->assertEquals("Joe", $test_stylist->getName());
         }
 
         function testDelete()

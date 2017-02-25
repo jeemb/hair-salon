@@ -192,20 +192,20 @@
             $test_stylist = new Stylist($name, $phone, $address, $id);
             $test_stylist->save();
 
-            $name_client = "Rob";
+            $name_client = "Joe";
             $id = null;
             $stylist_id = $test_stylist->getId();
             $test_client = new Client($name_client, $stylist_id, $id);
             $test_client->save();
 
-            $name2 = "Bob";
+            $name2 = "Mary";
             $phone2 = "44";
             $address2 = "400";
             $id = null;
             $test_stylist2 = new Stylist($name2, $phone2, $address2, $id);
             $test_stylist2->save();
 
-            $name_client2 = "Rob";
+            $name_client2 = "Margaret";
             $id = null;
             $stylist_id2 = $test_stylist->getId();
             $test_client2 = new Client($name_client2, $stylist_id2, $id);
@@ -259,14 +259,14 @@
             $test_client = new Client($name_client, $stylist_id, $id);
             $test_client->save();
 
-            $name2 = "Bob";
-            $phone2 = "44";
-            $address2 = "400";
+            $name2 = "Mary";
+            $phone2 = "55";
+            $address2 = "455";
             $id = null;
             $test_stylist2 = new Stylist($name2, $phone2, $address2, $id);
             $test_stylist2->save();
 
-            $name_client2 = "Rob";
+            $name_client2 = "Margaret";
             $id = null;
             $stylist_id2 = $test_stylist->getId();
             $test_client2 = new Client($name_client2, $stylist_id2, $id);
