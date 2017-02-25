@@ -12,8 +12,8 @@
                     {% for stylist in stylists %}
                         <li><a href="/stylists/{{ stylist.getId }}">{{ stylist.getName }}</a></li>
                             <ul>
-                                <li>{{ stylist.getPhone }}</li>
-                                <li>{{ stylist.getAddress }}</li>
+                                <li>phone: {{ stylist.getPhone }}</li>
+                                <li>address: {{ stylist.getAddress }}</li>
                             </ul>
                     {% endfor %}
                 </ul>
