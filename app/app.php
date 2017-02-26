@@ -37,7 +37,7 @@
 
     $app->get("/stylists/{id}", function($id) use ($app) {
         $stylist = Stylist::find($id);
-        return $app['twig']->render('stylists_id.html.twig', array('stylist' => $stylist, 'clients' => $clients));
+        return $app['twig']->render('stylists_id.html.twig', array('stylist' => $stylist, 'clients' => Client::getAll()));
     });
 
     $app->post("/stylists/{id}", function($id) use ($app) {
@@ -77,12 +77,12 @@
 
     $app->get("/client/{id}", function($id) use ($app) {
         $client = Client::find($id);
-        return $app['twig']->render('stylists_id.html.twig', array('stylist' => $stylist, 'clients' => $clients));
+        return $app['twig']->render('stylists_id.html.twig', array('stylist' => $stylist, 'client' => $client, 'clients' => Client::getAll()));
     });
 
     $app->post("/client/{id}", function($id) use ($app) {
         $client = Client::find($id);
-        return $app['twig']->render('stylists_id.html.twig', array('stylist' => $stylist, 'clients' => Client::getAll()));
+        return $app['twig']->render('stylists_id.html.twig', array('stylist' => $stylist, 'client' => $client, 'clients' => Client::getAll()));
     });
 
     //user clicks submit button to update client info
