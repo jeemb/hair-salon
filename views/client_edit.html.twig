@@ -16,7 +16,7 @@
                 <button type="submit" class='btn btn-primary'>Update</button>
             </form>
 
-            <form action="/client/{{ client.getId }}" method="get">
+            <form action="/client/{{ client.getId }}" method="post">
                 <input name="_method" type="hidden" value="delete">
                 <button type="submit" class='btn btn-primary'>Delete this client</button>
             </form>
