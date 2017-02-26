@@ -96,7 +96,7 @@
 
     $app->get("/client/{id}/edit", function($id) use ($app) {
         $client = Client::find($id);
-        return $app['twig']->render('client_edit.html.twig', array('client' => $client));
+        return $app['twig']->render('client_edit.html.twig', array('client' => $client, 'clients' =>Client::getAll()));
     });
 
     //deletes all clients for specific stylist

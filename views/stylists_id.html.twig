@@ -1,49 +1,56 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css'>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+        <link href="styles.css" rel="stylesheet" type="text/css">
         <title>Hair Salon</title>
     </head>
     <body>
         <div class="container">
-            <h1>Stylist Information</h1>
-                <ul>
-                    <li>Name: {{ stylist.getName }}</a></li>
+            <div class="jumbotron">
+                <h1>Hair Salon</h1>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <h1>{{stylist.getName}}'s Information</h1>
                         <ul>
-                            <li>Phone: {{ stylist.getPhone }}</li>
-                            <li>Address: {{ stylist.getAddress }}</li>
+                            <li>Name: {{ stylist.getName }}</a></li>
+                                <ul>
+                                    <li>Phone: {{ stylist.getPhone }}</li>
+                                    <li>Address: {{ stylist.getAddress }}</li>
+                                </ul>
                         </ul>
-                </ul>
-            <form action="/stylists/{{ stylist.getId }}/edit" method="get">
-                <button type="submit" name="button" class="btn btn-primary">Edit Stylist Info</button>
-            </form>
+                    <form action="/stylists/{{ stylist.getId }}/edit" method="get">
+                        <button type="submit" name="button" class="btn btn-primary">Edit Stylist Info</button>
+                    </form>
+                </div>
+                
+                <div class="col-md-6">
+                    <h3>Clients that {{stylist.getName}} currently has:</h1>
+                    <ul>
+                        {% for client in clients %}
+                            {% if stylist.getId == client.getStylistId %}
+                                <li><a href="/client/{{ client.getId }}/edit">{{ client.getName }}</a></li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
 
-            <h3>Want to add a new client for {{ stylist.getName }}? Enter client information below:</h3>
+                    <p>Want to add a new client for {{ stylist.getName }}? Enter client information below:</p>
+                    <form action='/client_add' method='post'>
+                        <input id="stylist_id" name="stylist_id" type="hidden" value="{{ stylist.getId() }}">
 
-            <h1>Clients that {{stylist.getName}} currently has:</h1>
-            {% if clients is not empty %}
-            <ul>
-                {% for client in clients %}
-                    {% if stylist.getId == client.getStylistId %}
-                        <li><a href="/client/{{ client.getId }}/edit">{{ client.getName }}</a></li>
-                    {% endif %}
-                {% endfor %}
-            </ul>
-            {% endif %}
+                        <label for='name'>Name:</label>
+                        <input id='name' name='name' type='text'>
 
-            <form action='/client_add' method='post'>
-                <input id="stylist_id" name="stylist_id" type="hidden" value="{{ stylist.getId() }}">
+                        <button type='submit' class='btn btn-primary'>Add Client</button>
+                    </form>
 
-                <label for='name'>Name:</label>
-                <input id='name' name='name' type='text'>
-
-                <button type='submit' class='btn btn-primary'>Add Client</button>
-            </form>
-
-            <form action="/delete_clients" method="post">
-                <button type='submit' class='btn btn-warning'>Clear all clients for this Stylist</button>
-            </form>
-            <a href="/">Homepage</a>
-        </div>
+                    <form action="/delete_clients" method="post">
+                        <button type='submit' class='btn btn-warning'>Clear all clients for this Stylist</button>
+                    </form>
+                    <a href="/">Homepage</a>
+                </div>
+            </div>
+            </div>
     </body>
 </html>

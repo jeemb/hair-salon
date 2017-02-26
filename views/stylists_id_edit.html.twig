@@ -2,25 +2,35 @@
 <html>
     <head>
         <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css'>
+        <link href="styles.css" rel="stylesheet" type="text/css">
         <title>Hair Salon</title>
     </head>
     <body>
         <div class="container">
-            <h3>Update Stylist Information</h3>
-            <form action="/stylists/{{ stylist.getId }}" method="post">
-                <input name="_method" type="hidden" value="patch">
+            <div class="jumbotron">
+                <h1>Hair Salon</h1>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <h3>Update Stylist Information</h3>
+                    <form action="/stylists/{{ stylist.getId }}" method="post">
+                        <input name="_method" type="hidden" value="patch">
 
-                <label for="name">Edit stylist name:</label>
-                <input id="name" name="name" type="text">
+                        <label for="name">Edit stylist name:</label>
+                        <input id="name" name="name" type="text">
 
-                <button type="submit" class='btn btn-primary'>Update</button>
-            </form>
+                        <button type="submit" class='btn btn-primary'>Update</button>
+                    </form>
+                </div>
 
-            <form action="/stylists/{{ stylist.getId }}" method="post">
-                <input name="_method" type="hidden" value="delete">
+                <div class="col-md-6">
+                    <form action="/stylists/{{ stylist.getId }}" method="post">
+                        <input name="_method" type="hidden" value="delete">
 
-                <button type="submit" class='btn btn-primary'>Delete this stylist</button>
-            </form>
+                        <button type="submit" class='btn btn-primary'>Delete this stylist</button>
+                    </form>
+                </div>
+            </div>
             <a href="/">Homepage</a>
         </div>
     </body>

@@ -2,36 +2,47 @@
 <html>
     <head>
         <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css'>
+        <link href="styles.css" rel="stylesheet" type="text/css">
         <title>Hair Salon</title>
     </head>
     <body>
         <div class="container">
-            <h1>Current Stylists</h1>
-            {% if stylists is not empty %}
-                <ul>
-                    {% for stylist in stylists %}
-                        <li><a href="/stylists/{{ stylist.getId }}">{{ stylist.getName }}</a></li>
-                            <ul>
-                                <li>phone: {{ stylist.getPhone }}</li>
-                                <li>address: {{ stylist.getAddress }}</li>
-                            </ul>
-                    {% endfor %}
-                </ul>
-            {% endif %}
+            <div class="jumbotron">
+                <h1>Hair Salon</h1>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <h3>Current Stylists</h3>
+                    {% if stylists is not empty %}
+                        <ul>
+                            {% for stylist in stylists %}
+                                <li><a href="/stylists/{{ stylist.getId }}">{{ stylist.getName }}</a></li>
+                                    <ul>
+                                        <li>phone: {{ stylist.getPhone }}</li>
+                                        <li>address: {{ stylist.getAddress }}</li>
+                                    </ul>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
 
-            <h3>Want to add a new Stylist? Enter information below:</h3>
-            <form action='/stylists_add' method='post'>
-                <label for='name'>Name:</label>
-                <input id='name' name='name' type='name'>
+                <div class="col-md-6">
+                    <h3>Want to add a new Stylist? Enter information below:</h3>
+                    <form action='/stylists_add' method='post'>
+                        <label for='name'>Name:</label>
+                        <input id='name' name='name' type='name'>
+                        <br>
 
-                <label for='phone'>Phone:</label>
-                <input id='phone' name='phone' type='phone'>
-
-                <label for='address'>Address:</label>
-                <input id='address' name='address' type='address'>
-
-                <button type='submit' class='btn btn-primary'>Add New Stylist!</button>
-            </form>
+                        <label for='phone'>Phone:</label>
+                        <input id='phone' name='phone' type='phone'>
+                        <br>
+                        <label for='address'>Address:</label>
+                        <input id='address' name='address' type='address'>
+                        <br>
+                        <button type='submit' class='btn btn-primary'>Add New Stylist!</button>
+                    </form>
+                </div>
+            </div>
 
             <form action="/delete_stylists" method="post">
                 <button type='submit' class='btn btn-warning'>Clear all Stylists</button>
